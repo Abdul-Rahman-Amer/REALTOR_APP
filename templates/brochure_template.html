@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Brochure</title>
+    <style>
+        /* Add your CSS styles for brochure layout here */
+        .brochure {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .unit-info {
+            margin-bottom: 20px;
+        }
+        .unit-photo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .amenities {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% for building_data in building_data_list %}
+    <div class="brochure">
+        <h1>{{ building_data.title }}</h1>
+    
+        <div class="unit-info">
+            <h2>Available Units</h2>
+            <ul>
+                <li>Studios starting at: {{ building_data.studio_price }}</li>
+                <li>1 Bedrooms starting at: {{ building_data.one_bedroom_price }}</li>
+                <li>2 Bedrooms starting at: {{ building_data.two_bedroom_price }}</li>
+            </ul>
+        </div>
+    
+        <div class="unit-photo">
+            <h2>Unit Photos</h2>
+            <!-- Iterate over unit photos and display them -->
+            {% for photo in building_data.unit_photos %}
+            <img src="{{ url_for('static', filename=photo) }}" alt="Image">
+            {% endfor %}
+        </div>
+    
+        <!-- ... (rest of your brochure template) -->
+    </div>
+    {% endfor %}
+    
+
+        <div class="amenities">
+            <h2>Amenities</h2>
+            <!-- Placeholder for amenities -->
+            <ul>
+                <li>Swimming Pool</li>
+                <li>Fitness Center</li>
+                <li>Parking</li>
+                <!-- Add more amenities here -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

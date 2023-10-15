@@ -1,0 +1,280 @@
+,Building,Unit,Price,Bedrooms,Bathrooms
+0,90 Washington,3J,3775,Studio, 1
+1,90 Washington,19D,3300,Studio, 1
+2,90 Washington,PHF,4600,1 Bed, 1
+3,90 Washington,312,2850,1 Bed, 1
+4,90 Washington,17L,4300,1 Bed, 1
+5,90 Washington,7J,3925,Studio, 1
+6,90 Washington,3J,3775,Studio, 1
+7,90 Washington,5F,3650,Studio, 1
+8,90 Washington,22J,3600,Studio, 1
+9,90 Washington,24F,3500,Studio, 1
+10,90 Washington,7L,3450,Studio, 1
+11,90 Washington,24D,3400,Studio, 1
+12,90 Washington,19D,3300,Studio, 1
+13,90 Washington,18N,"$5,095",2,1
+14,100 John,1410,3750,Studio, 1
+15,100 John,1815,4000,1 Bed, 1
+16,100 John,1410,3750,Studio, 1
+17,100 John,1617,3600,Studio, 1
+18,100 John,1411,"$4,150",2,1
+19,100 John,812,"$8,250",2,1
+20,37 Wall,9T,3995,Studio, 1
+21,37 Wall,16D,3700,Studio, 1
+22,37 Wall,8M,3675,Studio, 1
+23,37 Wall,23F,3250,Studio, 1
+24,37 Wall,2914,4195,1 Bed, 1
+25,37 Wall,9L,3150,Studio, 1
+26,75 West,2K,4795,1 Bed, 1.5
+27,75 West,2K,4795,1 Bed, 1.5
+28,75 West,2212,"$3,550",2,1
+29,116 John,2808,4250,1 Bed, 1
+30,116 John,2808,4250,1 Bed, 1
+31,116 John,1910,3410,Studio, 1
+32,116 John,2203,"$6,520",2,2
+33,116 John,2203,"$6,520",2,2
+34,116 John,9EF,"$15,950",3,3
+35,85 John ,9E,4995,1 Bed, 1
+36,85 John ,13M,4760,1 Bed, 2
+37,85 John ,9N,4250,1 Bed, 1
+38,85 John ,9N,4250,1 Bed, 1
+39,85 John ,2K,3200,Studio, 1
+40,85 John ,9E,"$4,995",2,1
+41,11 Maiden,632,3863,1 Bed, 1
+42,11 Maiden,10D,"$4,995",3,1
+43,11 Maiden,12B,"$3,850",2,1
+44,63 Wall,1815,4410,1 Bed, 1
+45,63 Wall,1701,3750,Studio, 1
+46,63 Wall,401,5210,1 Bed, 1
+47,63 Wall,1216,4825,1 Bed, 1
+48,63 Wall,506,5000,1 Bed, 1
+49,63 Wall,1517,4985,1 Bed, 1
+50,63 Wall,812,4650,1 Bed, 1
+51,63 Wall,1815,4410,1 Bed, 1
+52,63 Wall,1208,4375,Studio, 1
+53,63 Wall,3502,3795,Studio, 1
+54,63 Wall,1701,3750,Studio, 1
+55,63 Wall,1103,3375,Studio, 1
+56,63 Wall,1013,"$8,995",2,2
+57,67 Wall,12L,3675,Studio, 1
+58,67 Wall,12L,3675,Studio, 1
+59,67 Wall,3G,"$5,700",2,1
+60,67 Wall,3G,"$5,700",2,1
+61,90 West,19J,4200,1 Bed, 1
+62,90 West,10Y,3600,1 Bed, 1
+63,90 West,20V,3200,Studio, 1
+64,90 West,17A,3095,Studio, 1
+65,90 West,36D,6027,1 Bed, 1
+66,15 Park Row,10F,3950,1 Bed, 1
+67,15 Park Row,5B,4500,1 Bed, 1
+68,15 Park Row,3015C,3460,Studio, 1
+69,15 Park Row,10F,3950,1 Bed, 1
+70,15 Park Row,7J,3400,Studio, 1
+71,100 Maiden Lane,314,4075,Studio, 1
+72,100 Maiden Lane,1011,3600,Studio, 1
+73,100 Maiden Lane,2106,4500,1 Bed, 1
+74,100 Maiden Lane,2036B,4500,1 Bed, 1
+75,100 Maiden Lane,41-5,4495,1 Bed, 1
+76,100 Maiden Lane,2305,4425,1 Bed, 1
+77,100 Maiden Lane,1116,4250,Studio, 1
+78,100 Maiden Lane,24-2,4200,1 Bed, 1
+79,100 Maiden Lane,314,4075,Studio, 1
+80,100 Maiden Lane,1011,3600,Studio, 1
+81,100 Maiden Lane,825,"$6,195",2,2
+82,95 Wall,2021,4837,1 Bed, 1
+83,95 Wall,1024,3968,Studio, 1
+84,95 Wall,622,5573,1 Bed, 1
+85,95 Wall,923,4998,1 Bed, 1
+86,95 Wall,14A,5306,Studio, 1
+87,95 Wall,2021,4837,1 Bed, 1
+88,95 Wall,1104,4270,Studio, 1
+89,95 Wall,1409,4169,Studio, 1
+90,95 Wall,905,4150,Studio, 1
+91,95 Wall,1718,3990,Studio, 1
+92,95 Wall,1024,3968,Studio, 1
+93,95 Wall,2124,3925,Studio, 1
+94,95 Wall,2203,3842,Studio, 1
+95,95 Wall,613,3785,Studio, 1
+96,10 Hanover,17D,4446,Studio, 1
+97,10 Hanover,20R,3917,Studio, 1
+98,10 Hanover,15G,5266,1 Bed, 1
+99,10 Hanover,22F,5261,1 Bed, 1
+100,10 Hanover,10E,5196,1 Bed, 1
+101,10 Hanover,17D,4446,Studio, 1
+102,10 Hanover,16D,4417,Studio, 1
+103,10 Hanover,18B,4236,Studio, 1
+104,10 Hanover,17J,4217,Studio, 1
+105,10 Hanover,2I,4032,Studio, 1
+106,10 Hanover,23R,4016,Studio, 1
+107,10 Hanover,7Y,3942,Studio, 1
+108,10 Hanover,15A,"$6,909",2,2
+109,10 Hanover,28K,"$8,794",2,2
+110,2 Gold,20G,4575,1 Bed, 1
+111,2 Gold,4204,4560,1 Bed, 1
+112,2 Gold,2211,3650,Studio, 1
+113,2 Gold,5G,3515,Studio, 1
+114,2 Gold,4712,"$7,990",3,2
+115,2 Gold,803,"$6,675",2,2
+116,2 Gold,1113,"$6,255",2,2
+117,2 Gold,2413,"$6,240",2,2
+118,2 Gold,1707,"$11,500",2,2
+119,45 Wall,201,7675,1 Bed, 2
+120,45 Wall,516,4675,1 Bed, 1
+121,45 Wall,612,4485,Studio, 1
+122,45 Wall,2509,4495,Studio, 1
+123,45 Wall,2118,4205,1 Bed, 1
+124,45 Wall,1819,3580,Studio, 1
+125,45 Wall,1814,"$7,365",2,2
+126,71 Broadway,9B,4777,1 Bed, 1
+127,71 Broadway,W304,3183,1 Bed, 1
+128,71 Broadway,20I,4512,1 Bed, 1
+129,71 Broadway,22I,4496,1 Bed, 1
+130,71 Broadway,15I,4447,1 Bed, 1
+131,71 Broadway,5D,3949,Studio, 1
+132,71 Broadway,22K,"$6,759",2,2
+133,71 Broadway,2J,"$5,995",2,2
+134,71 Broadway,18K,"$5,768",2,2
+135,84 William,902,4750,1 Bed, 1
+136,84 William,1708,4795,1 Bed, 1
+137,84 William,1708,4795,1 Bed, 1
+138,84 William,902,4750,1 Bed, 1
+139,84 William,204,3600,Studio, 1
+140,84 William,1705A,3475,Studio, 1
+141,84 William,P101,"$7,850",2,2
+142,84 William,1814,"$23,778",3,2.5
+143,180 Water,906,4650,1 Bed, 1
+144,180 Water,1522,3495,Studio, 1
+145,180 Water,2415,5820,1 Bed, 2
+146,180 Water,1112,4650,1 Bed, 1
+147,180 Water,46H,5073,1 Bed, 1
+148,180 Water,906,4650,1 Bed, 1
+149,180 Water,302,3595,Studio, 1
+150,180 Water,1522,3495,Studio, 1
+151,20 Broad,1722,3295,Studio, 1
+152,20 Broad,502,3695,Studio, 1
+153,20 Broad,1701,7995,1 Bed, 3
+154,20 Broad,501,5795,Studio, 1
+155,20 Broad,1408,4660,1 Bed, 1
+156,20 Broad,204,4495,Studio, 1
+157,20 Broad,502,3695,Studio, 1
+158,20 Broad,1722,3295,Studio, 1
+159,20 Broad,4902,"$8,385",2,2
+160,20 Exchnage,1011,5650,1 Bed, 2
+161,20 Exchnage,911,5640,1 Bed, 2
+162,20 Exchnage,1207,5160,1 Bed, 1
+163,20 Exchnage,E220,3012,1 Bed, 1
+164,20 Exchnage,1004,5240,1 Bed, 2
+165,20 Exchnage,904,5230,1 Bed, 2
+166,20 Exchnage,1309,4815,1 Bed, 1
+167,20 Exchnage,1227,4530,1 Bed, 1
+168,20 Exchnage,927,4500,1 Bed, 1
+169,20 Exchnage,910,3930,Studio, 1
+170,20 Exchnage,1217,4265,1 Bed, 1
+171,20 Exchnage,1429,"$5,880",2,1
+172,21 West,14H,3746,Studio, 1
+173,21 West,18D,3916,Studio, 1
+174,21 West,31E,5676,1 Bed, 2
+175,21 West,18D,3916,Studio, 1
+176,21 West,16H,3766,Studio, 1
+177,21 West,14H,3746,Studio, 1
+178,21 West,5H,3591,Studio, 1
+179,21 West,PH60B,"$30,000",3,4
+180,70 Pine,2006,4550,Studio, 1
+181,70 Pine,14G,5180,Studio, 1
+182,70 Pine,4004,"$8,555",2,2
+183,70 Pine,PH5703,"$9,772",2,2
+184,70 Pine,2502,"$8,696",2,2
+185,70 Pine,4404,"$8,596",2,2
+186,70 Pine,4004,"$8,555",2,2
+187,70 Pine,3804,"$8,535",2,2
+188,70 Pine,3504,"$8,472",2,2
+189,70 Pine,3304,"$8,402",2,2
+190,70 Pine,3605,"$8,330",2,2
+191,70 Pine,3405,"$8,277",2,2
+192,70 Pine,2312,"$8,224",2,2
+193,70 Pine,2501,"$8,087",2,2
+194,29 Cliff,20C,5500,1 Bed, 1
+195,29 Cliff,17A,5250,1 Bed, 1
+196,29 Cliff,4E,3394,Studio, 1
+197,29 Cliff,7T,"$7,941",2,2
+198,29 Cliff,10D,"$7,595",2,2
+199,29 Cliff,3G,"$7,395",2,2
+200,254 Front,2C,3700,1 Bed, 1
+201,254 Front,1245,"$6,120",3,2
+202,15 Cliff,25C,4995,1 Bed, 1
+203,15 Cliff,19A,4870,1 Bed, 1
+204,15 Cliff,820,4700,1 Bed, 1
+205,15 Cliff,11A,4770,1 Bed, 1
+206,15 Cliff,5C,4580,1 Bed, 1
+207,15 Cliff,2D,4290,1 Bed, 1
+208,15 Cliff,26F,"$6,805",2,2
+209,15 Cliff,5E,"$5,530",2,1
+210,33 Gold,604,3500,1 Bed, 1
+211,33 Gold,W304,3183,1 Bed, 1
+212,33 Gold,212,3200,Studio, 1
+213,33 Gold,324,2800,Studio, 1
+214,33 Gold,L4,2600,Studio, 1
+215,33 Gold,314,"$5,500",3,2
+216,33 Gold,217,"$5,000",2,2
+217,33 Gold,306,"$5,000",2,1
+218,108 Fulton,11D,3200,1 Bed, 1
+219,108 Fulton,6E,2600,Studio, 1
+220,108 Fulton,Eagle Street 2-PH-3N,3545,Studio, 1
+221,108 Fulton,12A,"$4,800",2,1
+222,108 Fulton,4G,"$3,600",2,1
+223,110 Greenwhich,49B,6029,1 Bed, 1
+224,110 Greenwhich,9,"$7,495",3,1
+225,110 Greenwhich,5,"$4,995",2,1
+226,8 Spruce,19K,5195,1 Bed, 1
+227,8 Spruce,49T,6820,1 Bed, 1
+228,8 Spruce,49T,6820,1 Bed, 1
+229,8 Spruce,37D,5750,1 Bed, 1
+230,8 Spruce,19K,5195,1 Bed, 1
+231,8 Spruce,25W,4395,Studio, 1
+232,8 Spruce,11U,4287,Studio, 1
+233,8 Spruce,30K,4000,Studio, 1
+234,8 Spruce,61A,"$15,985",3,2.5
+235,8 Spruce,73T,"$12,085",2,2.5
+236,8 Spruce,W1C,"$6,950",2,2.5
+237,8 Spruce,62R,"$10,490",2,2
+238,8 Spruce,37T,"$8,155",2,2
+239,8 Spruce,27A,"$8,140",2,2
+240,7 Dey,29E,4925,Studio, 1
+241,7 Dey,22D,7875,1 Bed, 1.5
+242,7 Dey,25F,5970,1 Bed, 1
+243,7 Dey,29E,4925,Studio, 1
+244,7 Dey,29A,"$9,990",2,2
+245,7 Dey,PHA,"$11,500",2,2
+246,7 Dey,PHB,"$11,000",2,2
+247,7 Dey,14C,"$25,400",3,3
+248,7 Dey,29A,"$9,990",2,2
+249,2 Water,6D,4900,1 Bed, 1
+250,2 Water,5B,3600,Studio, 1
+251,2 Water,1004,2960,1 Bed, 1
+252,2 Water,14H,"$8,000",2,2
+253,200 Water,PH18,4905,1 Bed, 1
+254,200 Water,210,4250,Studio, 1
+255,200 Water,PH18,4905,1 Bed, 1
+256,200 Water,2102,4800,1 Bed, 1
+257,200 Water,901,4700,1 Bed, 1
+258,200 Water,525,4650,1 Bed, 1
+259,200 Water,2706,4600,Studio, 1
+260,200 Water,1716,4555,1 Bed, 1
+261,200 Water,211,4500,Studio, 1
+262,200 Water,210,4250,Studio, 1
+263,200 Water,2701,4000,Studio, 1
+264,200 Water,1608,3885,Studio, 1
+265,200 Water,1715,"$6,850",2,2
+266,200 Water,18D,"$26,430",4,3.5
+267,1 West,2718,4640,1 Bed, 1
+268,1 West,20F,3745,Studio, 1
+269,1 West,2718,4640,1 Bed, 1
+270,1 West,2911,4500,1 Bed, 1
+271,1 West,1912,4195,Studio, 1
+272,1 West,2814,3600,Studio, 1
+273,1 West,1909,3750,Studio, 1
+274,1 West,2322,3300,Studio, 1
+275,1 West,2320,3050,Studio, 1
+276,1 West,3604,"$7,000",2,1
+277,1 West,2508,"$5,295",3,1
+278,1 West,2916,"$5,150",2,1

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function generatePDF() {
+        const totalFlyers = 3;
+
+        for (let i = 0; i < totalFlyers; i++) {
+            const element = document.getElementById(`flyer-${i}`);
+            
+            // Reset the scale to normal
+            element.style.transform = 'none';
+            
+            html2pdf()
+            .from(element)
+            .save();
+        }
+    }
+</script>
+
+
+
+  
+    
+
+    
+        
+    <style>
+        body {
+  margin: 40px 40px 0 50px;
+  background: #fff;
+}
+
+.flyer {
+    transform: scale(0.5);
+    transform-origin: top left;
+    padding: 0 4em;
+    background: #fff;
+    width: 2550px;
+    height: 4000px;
+    font-family: "Lato", sans-serif;
+    box-shadow: 0px 5px 100px 5px rgba(0, 0, 0, 0.40);
+}
+[class^="flyer-"] {
+    transform: none; /* Reset the scale to the original size */
+}
+
+.brownbox {
+  margin-top: 120px;
+  padding-top: 50px;
+  height: 500px;
+ 
+  background: #917462 0% 0% no-repeat padding-box;
+  z-index: 10;
+}
+
+h1 {
+  text-align: center;
+  font: normal normal 300 80px/120px Lato;
+  letter-spacing: 24px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.contactinfo {
+  padding-top: 30px;
+}
+
+#phone {
+  margin-left: 100px;
+  padding-right: 50px; 
+  text-align: center;
+  font: 100 50px/60px Lato;
+  letter-spacing: 4px;
+  color: #FFFFFF;
+}
+
+.email {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  padding: 0 50px 0 50px;
+  text-align: center;
+  font: 100 50px/60px Lato;
+  letter-spacing: 4px;
+  color: #FFFFFF;
+}
+
+#license {
+  padding-left: 50px;
+  text-align: center;
+  font: 100 50px Lato;
+  letter-spacing: 3.2px;
+  color: #FFFFFF;
+}
+
+.mainpic {
+  background-image: url("https://www.collabratechnology.com/wp-content/uploads/2020/09/001_Front-View.jpg");
+  height: 1300px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 115%;
+  background-position: top;
+  padding: 0;
+  margin: 0;
+}
+
+.longbox {
+  margin-left: 100px;
+  padding-top: 10px;
+  width: 840px;
+  height: 3050px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 0.9;
+  z-index: 999;
+  position: relative;
+}
+.photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(600px, 1fr)); /* Adjust the column width as needed */
+            grid-gap: 20px; /* Adjust the gap between photos */
+            margin-top: 30px; /* Add some top margin to separate from the previous content */
+        }
+
+        /* Style for each photo item in the grid */
+        .photo-item {
+            width: 100%; /* Ensure each item takes the full available width */
+            height: 650px; /* Set the desired height for each photo item */
+            overflow: hidden; /* Crop photos if they are larger than the defined height */
+            border: 1px solid #ccc; /* Add a border for visual separation */
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add shadow for a card-like effect */
+        }
+
+        /* Style the images within the photo items */
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+        }
+h3 {
+  margin-top: 110px;
+  text-align: center;
+  font: normal normal 300 73px/88px Lato;
+  text-transform: uppercase;
+  letter-spacing: 5.11px;
+  color: #917462;
+}
+
+h2 {
+  text-align: center;
+  font: normal normal bold 120px/141px Lato;
+  letter-spacing: 8.26px;
+  color: #917462;
+  text-transform: uppercase;
+}
+
+.whitehr {
+  margin-top: 80px;
+  width: 671px;
+  border: 1px solid #917462;
+}
+
+.price {
+  margin-top: 80px;
+  text-align: center;
+  font: normal normal bold 117px/140px Lato;
+  letter-spacing: 8.19px;
+  color: #917462;
+  text-transform: uppercase;
+}
+
+.numbers{ 
+  font: normal normal 800 50px/60px Lato;
+  letter-spacing: 2.5px;
+  color: #917462;
+  text-transform: uppercase;
+}
+
+.smbtext {
+  text-align: center;
+  font: normal normal 300 50px/60px Lato;
+  letter-spacing: 2.5px;
+  color: #917462;
+  text-transform: uppercase;
+  
+}
+
+.sqft {
+  margin-top: 50px;
+  margin-bottom: -30px;
+}
+
+.texticon {
+  margin-top: 20px;
+}
+
+#Layer_1 {
+  display: block;
+  margin: auto;
+  height: 150px;
+}
+
+.beds {
+  margin-top: 500px;
+}
+
+#Layer_beds {
+  display: block;
+  margin: auto;
+  height: 150px;
+}
+
+#Layer_baths {
+  display: block;
+  margin: auto;
+  height: 200px;
+}
+
+.livingroom {
+  width: 950px;
+  height: 900px;
+  margin: 50px 0 0 -20px;
+  background-image: url("https://www.collabratechnology.com/wp-content/uploads/2020/09/005_Living-Room.jpg");
+
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.bathroom {
+  width: 780px;
+  height: 850px;
+  margin: 50px 0 0 0;
+  background-image: url("https://www.collabratechnology.com/wp-content/uploads/2020/09/017_Master-Bathroom.jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.patio {
+  height: 850px;
+  margin: -500px -25px 0 0;
+  background-image: url("https://www.collabratechnology.com/wp-content/uploads/2020/09/022_Patio.jpg");
+margin-top: -2000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  border: 10px solid #FFFFFF;
+}
+
+.bedroom {
+  width: 950px;
+  height: 850px;
+  margin: -510px 0 0 10px;
+  background-image: url("https://www.collabratechnology.com/wp-content/uploads/2020/09/021_Bedroom-4.jpg");
+margin-bottom: 10000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+h4 {
+  text-align: center;
+  font: 100 60px/72px Lato; 
+  letter-spacing: 18px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+} 
+
+#downbrownbox {
+  margin-top: 50px !important;
+  height: 210px !important; 
+}
+
+#realestatelogo {
+  margin-top: 50px;
+  margin-left: -30px;
+  width: 493px;
+  height: 195px;
+}
+
+.office {
+  margin-top: 20px;
+  text-align: left;
+  font: 500 60px Lato;
+  letter-spacing: 4.8px;
+  color: #BCBCBC;
+  text-transform: uppercase;
+}
+
+#office {
+  margin-top: 60px;
+  padding-left: 150px;
+  height: 195px;
+  border-left: 1px solid #00B8ED;
+}
+
+.officeaddress {
+  text-align: left;
+  font: 500 50px Lato;
+  letter-spacing: 2.5px;
+  color: #BCBCBC;
+  text-transform: uppercase;
+}
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+   
+    <button onclick="generatePDF()">Generate PDF</button>
+ 
+  
+
+<div class="flyer-wrapper" id="flyer-wrapper">
+    {% for building_data in building_data_list %}
+    <div class="flyer flyer-{{ building_data.index }}" id="flyer-{{ building_data.index }}">
+        <div class="container-fluid">
+      
+      <!-- top brown box for agent-->
+        <div class="row">
+            <div class="col-md-12 brownbox">
+            <h1>Rocky Amer</h1>
+            <div class="row contactinfo">
+                <div class="col-md-4" id="phone">p: 1-347-785-4017</div>
+                <div class="col-md-4 email">amer&commat;rosnyc&period;com</div>
+                <div class="col-md-4" id="license">NY RENT OWN SELL : Broker</div>
+            </div>
+            </div>
+        </div>
+      
+        <!-- long box with a price and the main pic-->
+        <div class="row">
+            <div class="col-md-12 mainpic" style="background-image: url('{{ url_for('static', filename=building_data.unit_photos[0]) }}');">
+            <div class="longbox">
+                <h3 class="titles">{{ building_data.title }}</h3>
+                <h2>New Listings</h2>
+                <hr class="whitehr">
+                <span><h3>flex one starting at </h3><p class="price">${{prices.flex1}}</p></span>
+                <span><h3>flex two starting at </h3><p class="price">${{prices.flex2}}</p></span>
+                <span><h3>flex three starting at </h3><p class="price">${{prices.flex3}}</p></span>
+                <hr class="whitehr">
+            <div class="row">
+                <div class="col-md-6 smbtext beds" style="margin-top: 5px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#927563}</style><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/></svg>
+                <p class="texticon"><span class="numbers">1-3</span>&nbsp;BEDS</p>
+            </div>
+            
+            <div class="col-md-6 smbtext">
+                <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#927563}</style><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z"/></svg>
+                <p class="texticon"><span class="numbers">1-2</span>&nbsp;BATHS</p>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div><!-- ending the long box with a price and the main pic-->
+        <div class="row photo-grid">
+            {% for photo_url in building_data.unit_photos[1:] %}
+            <div class="col-md-4 photo-item">
+                <img src="{{ url_for('static', filename=photo_url) }}" alt="Building Photo">
+            </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+        </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</body>
+
+</html>
