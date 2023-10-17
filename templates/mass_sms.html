@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for the vertical navbar */
+        .navbar {
+            width: 100px; /* Adjust the width as needed */
+            background-color: #333; /* Navbar background color */
+            height: 100%; /* Make the navbar the full height of the page */
+            position: fixed; /* Fixed position on the left side */
+            left: 0;
+            top: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for the navbar items */
+        .navbar-item {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .hover-text {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .navbar-item:hover .hover-text {
+            opacity: 1;
+        }
+
+        /* Styling for the icons */
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the main content area */
+        .content {
+            margin-left: 100px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling for the contact form */
+        .contact-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        /* Styling for the custom modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojimart/3.0.0/css/emojimart.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojimart/3.0.0/js/emojimart.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <!-- Email Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">🏠</div>
+            <span class="hover-text">Home</span>
+        </a>
+        <a href="/mass_email" class="navbar-item">
+            <div class="icon">✉️</div>
+            <span class="hover-text">Send Mass Emails</span>
+        </a>
+        <!-- SMS Icon -->
+        <a href="/mass_sms" class="navbar-item">
+            <div class="icon">📱</div>
+            <span class="hover-text">Send Mass SMS</span>
+        </a>
+        <!-- Contacts Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">📇</div>
+            <span class="hover-text">Manage Contacts</span>
+        </a>
+        <!-- Random Icons (You can replace these with actual icons) -->
+        <a href="/insights" class="navbar-item">
+            <div class="icon">🔍</div>
+            <span class="hover-text">Insights</span>
+        </a>
+        <a href="/manage_finances" class="navbar-item">
+            <div class="icon">📉</div>
+            <span class="hover-text">Manage Spending</span>
+        </a>
+        <a href="/employees" class="navbar-item">
+            <div class="icon">👨‍💼</div>
+            <span class="hover-text">Manage Employees</span>
+        </a>
+        <a href="/payroll" class="navbar-item">
+            <div class="icon">💰</div>
+            <span class="hover-text">Payroll</span>
+        </a>
+        <a href="/calendar" class="navbar-item">
+            <div class="icon"> 📅</div>
+            <span class="hover-text">Schedule Events</span>
+        </a>
+        <a href="#" class="navbar-item">
+            <div class="icon">⚙️</div>
+            <span class="hover-text">Settings</span>
+        </a>
+    </div>
+
+    <!-- Main content area for Mass SMS -->
+    <div class="content">
+        <!-- Your mass SMS content goes here -->
+        <h1>Send Mass SMS</h1>
+
+        <!-- Form for selecting recipients -->
+        <form id="sms-form">
+            <h2>Select Recipients</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Select</th>
+                </tr>
+                {% if csv_data is not none %}
+                    {% for index, row in csv_data.iterrows() %}
+                        <tr>
+                            <td>{{ row['name'] }}</td>
+                            <td>{{ row['phone number'] }}</td>
+                            <td>
+                                <input type="checkbox" class="recipient-checkbox" name="recipient" value="{{ index }}">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+
+            <!-- "Select All" checkbox -->
+            <div class="form-group">
+                <label for="select-all">Select All:</label>
+                <input type="checkbox" id="select-all">
+            </div>
+
+            <!-- SMS Message Input -->
+            <h2>Compose Mass SMS</h2>
+            <div class="form-group">
+                <label for="sms-message">SMS Message:</label>
+                <textarea id="sms-message" name="sms-message" rows="4" cols="50" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="btn">Send SMS</button>
+            </div>
+        </form>
+
+        <!-- JavaScript for handling form submission and "Select All" functionality -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const smsForm = document.getElementById("sms-form");
+                const selectAllCheckbox = document.getElementById("select-all");
+
+                selectAllCheckbox.addEventListener("change", function () {
+                    const recipientCheckboxes = document.querySelectorAll('.recipient-checkbox');
+                    recipientCheckboxes.forEach((checkbox) => {
+                        checkbox.checked = selectAllCheckbox.checked;
+                    });
+                });
+
+                smsForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    // Get selected recipient indices
+                    const selectedRecipients = [];
+                    const recipientCheckboxes = document.querySelectorAll('input[name="recipient"]:checked');
+                    recipientCheckboxes.forEach((checkbox) => {
+                        selectedRecipients.push(checkbox.value);
+                    });
+
+                    // Get the SMS message
+                    const smsMessage = document.getElementById("sms-message").value;
+
+                    // Prepare data to send to the server for mass SMS processing
+                    const formData = new FormData();
+                    formData.append('selectedRecipients', JSON.stringify(selectedRecipients));
+                    formData.append('smsMessage', smsMessage);
+
+                    // Use the fetch API to send a POST request to your SMS processing route
+                    fetch('/send_mass_sms', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        // Handle the response, e.g., display a success message
+                        alert(data); // You can replace this with your own UI feedback
+                        smsForm.reset(); // Clear the form
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle errors, e.g., display an error message
+                        alert('Failed to send mass SMS. Please try again.');
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
+

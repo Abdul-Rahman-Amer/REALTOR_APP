@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+        :root {
+    --calendar-bg-color: #fff; /* Background color of the calendar */
+    --calendar-font-color: #ffffff; /* Font color of the calendar */
+    --calendar-header-bg-color: #000000; /* Header background color */
+    --calendar-header-font-color: #fff; /* Header font color */
+    --calendar-date-hover-color: #f0f0f0; /* Hover color for dates */
+    --calendar-current-date-color: #03a9f4; /* Color for the current date */
+    --calendar-prevnext-bg-color: #000000; /* Background color for prev/next buttons */
+    --next-prev-arrow-color: #fff; /* Arrow color for prev/next buttons */
+    --calendar-border-radius: 5px; /* Calendar border radius */
+    --event-modal-bg-color: rgba(0, 0, 0, 0.5); /* Background color for the event modal overlay */
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+        
+        /* Basic styling for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for the vertical navbar */
+        .navbar {
+            width: 100px; /* Adjust the width as needed */
+            background-color: #333; /* Navbar background color */
+            height: 100%; /* Make the navbar the full height of the page */
+            position: fixed; /* Fixed position on the left side */
+            left: 0;
+            top: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for the navbar items */
+        .navbar-item {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .hover-text {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .navbar-item:hover .hover-text {
+            opacity: 1;
+        }
+
+        /* Styling for the icons */
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the main content area */
+        .content {
+            margin-left: 100px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+/* Calendar Styles */
+.calendar {
+    font-family: 'IBM Plex Sans', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #000; /* Solid black background */
+    color: #fff; /* White text color */
+    border-radius: var(--calendar-border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.calendar-header {
+    text-align: center;
+    background-color: var(--calendar-header-bg-color);
+    color: var(--calendar-header-font-color);
+    padding: 15px 0;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+    padding: 15px;
+    text-align: center;
+
+}
+
+.calendar-table th {
+    background-color: #000000;
+    color: white;
+    font-size: 20px;
+}
+.calendar-table td:hover {
+    border: 1px solid #999; /* Grey border color */
+    border-radius: 4px; /* Rounded corners for the border */
+}
+
+.calendar-day {
+    font-size: 20px;
+}
+
+.current-day {
+    background-color: var(--calendar-current-date-color);
+    color: white;
+    font-size: 20px;
+ 
+}
+
+.calendar-navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.calendar-navigation button {
+    background-color: var(--calendar-prevnext-bg-color);
+    color: var(--next-prev-arrow-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.calendar-navigation button:hover {
+    background-color: #333;
+}
+
+.event-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .event-modal label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .event-modal input[type="text"],
+        .event-modal input[type="datetime-local"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .event-modal button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Clock container styles */
+        .clock-container {
+            position: relative;
+            width: 200px; /* Adjust the clock size as needed */
+            height: 200px;
+            margin: 20px auto;
+        }
+
+        /* Clock face styles */
+        .clock-face {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        /* Hour and minute hands styles */
+        .clock-hand {
+            position: absolute;
+            width: 2px; /* Adjust hand thickness */
+            background-color: #333;
+            top: 50%; /* Position at the center of the clock */
+            left: 50%;
+            transform-origin: 50% 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 2.1, 0.8, 0.5); /* Add smooth animation */
+        }
+
+        .hour-hand {
+            height: 40%; /* Adjust the hour hand length */
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .minute-hand {
+            height: 45%; /* Adjust the minute hand length */
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        /* Time input styles */
+        input[type="time"] {
+            position: relative;
+            appearance: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            z-index: 2;
+        }
+        
+
+    </style>
+
+<body>
+    <div class="navbar">
+        <!-- Email Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">🏠</div>
+            <span class="hover-text">Home</span>
+        </a>
+        <a href="/mass_email" class="navbar-item">
+            <div class="icon">✉️</div>
+            <span class="hover-text">Send Mass Emails</span>
+        </a>
+        <!-- SMS Icon -->
+        <a href="/mass_sms" class="navbar-item">
+            <div class="icon">📱</div>
+            <span class="hover-text">Send Mass SMS</span>
+        </a>
+        <!-- Contacts Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">📇</div>
+            <span class="hover-text">Manage Contacts</span>
+        </a>
+        <!-- Random Icons (You can replace these with actual icons) -->
+        <a href="/insights" class="navbar-item">
+            <div class="icon">🔍</div>
+            <span class="hover-text">Insights</span>
+        </a>
+        <a href="/manage_finances" class="navbar-item">
+            <div class="icon">📉</div>
+            <span class="hover-text">Manage Spending</span>
+        </a>
+        <a href="/employees" class="navbar-item">
+            <div class="icon">👨‍💼</div>
+            <span class="hover-text">Manage Employees</span>
+        </a>
+        <a href="/payroll" class="navbar-item">
+            <div class="icon">💰</div>
+            <span class="hover-text">Payroll</span>
+        </a>
+        <a href="/calendar" class="navbar-item">
+            <div class="icon"> 📅</div>
+            <span class="hover-text">Schedule Events</span>
+        </a>
+        <a href="#" class="navbar-item">
+            <div class="icon">⚙️</div>
+            <span class="hover-text">Settings</span>
+        </a>
+    </div>
+
+        <div class="content">
+            <!-- Your calendar content goes here -->
+            <div class="calendar">
+                <h1 class="calendar-header" id="calendar-header"></h1>
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                    </tbody>
+                </table>
+                <div class="calendar-navigation">
+                    <button id="prev-month">&#9664; Prev</button>
+                    <button id="next-month">Next &#9654;</button>
+                </div>
+            </div>
+        </div>
+        <div class="event-modal" id="event-modal">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Create Task</h2>
+            <form id="event-form">
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" name="task-name" required>
+                <div class="clock-container">
+                    <div class="clock-face"></div>
+                    <div class="clock-hand hour-hand"></div>
+                    <div class="clock-hand minute-hand"></div>
+                    <input type="time" id="task-time" name="task-time" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+        .clock-container {
+            position: relative;
+            width: 200px; /* Adjust the clock size as needed */
+            height: 200px;
+            margin: 20px auto;
+        }
+
+        /* Clock face styles */
+        .clock-face {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        /* Hour and minute hands styles */
+        .clock-hand {
+            position: absolute;
+            width: 2px; /* Adjust hand thickness */
+            background-color: #333;
+            top: 50%; /* Position at the center of the clock */
+            left: 50%;
+            transform-origin: 50% 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 2.1, 0.8, 0.5); /* Add smooth animation */
+        }
+
+        .hour-hand {
+            height: 30%; /* Adjust the hour hand length */
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .minute-hand {
+            height: 45%; /* Adjust the minute hand length */
+            transform: translateX(-50%) rotate(0deg);
+        }
+        
+                /* Time input styles */
+                input[type="time"] {
+                    position: relative;
+                    appearance: none;
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    outline: none;
+                    background: transparent;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #333;
+                    z-index: 2;
+                }
+            </style>
+        </head>
+        <body>
+
+            <script>
+                const hourHand = document.querySelector(".hour-hand");
+                const minuteHand = document.querySelector(".minute-hand");
+                const timeInput = document.getElementById("task-time");
+        
+                // Update clock hands based on selected time
+                timeInput.addEventListener("input", function () {
+                    const timeParts = this.value.split(":");
+                    const hours = parseInt(timeParts[0]);
+                    const minutes = parseInt(timeParts[1]);
+        
+                    // Calculate angles for hour and minute hands
+                    const hourAngle = (360 / 12) * (hours % 12);
+
+                    const minuteAngle = (360 / 60) * minutes;
+        
+                    // Apply transformations to clock hands
+                    hourHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${hourAngle}deg)`;
+                    minuteHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${minuteAngle}deg)`;
+                });
+            </script>
+        </body>
+        </html>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const calendarHeader = document.getElementById("calendar-header");
+                const calendarBody = document.getElementById("calendar-body");
+                const prevMonthBtn = document.getElementById("prev-month");
+                const nextMonthBtn = document.getElementById("next-month");
+        
+                // Initial date
+                let currentDate = new Date();
+                let currentYear = currentDate.getFullYear();
+                let currentMonth = currentDate.getMonth() + 1;
+        
+                // Function to generate the calendar for a specific year and month
+                function generateCalendar(year, month) {
+                    // Create a new Date object for the specified year and month
+                    const currentDate = new Date(year, month - 1, 1);
+        
+                    // Set the calendar header to display the month and year
+                    calendarHeader.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        
+                    // Clear the previous calendar content
+                    calendarBody.innerHTML = '';
+        
+                    // Calculate the number of days in the month
+                    const lastDayOfMonth = new Date(year, month, 0).getDate();
+        
+                    // Determine the day of the week for the first day of the month (0 = Sunday, 1 = Monday, ...)
+                    const firstDayOfWeek = currentDate.getDay();
+        
+                    // Create the calendar cells
+                    let currentDay = 1;
+                    for (let row = 0; row < 6; row++) {
+                        const newRow = document.createElement("tr");
+                        for (let col = 0; col < 7; col++) {
+                            const newCell = document.createElement("td");
+        
+                            if (row === 0 && col < firstDayOfWeek) {
+                                // Empty cells before the first day of the month
+                                newCell.className = "calendar-day";
+                            } else if (currentDay <= lastDayOfMonth) {
+                                newCell.textContent = currentDay;
+                                if (currentDay === new Date().getDate() && month === new Date().getMonth() + 1 && year === new Date().getFullYear()) {
+                                    // Highlight the current day
+                                    newCell.className = "current-day";
+                                } else {
+                                    newCell.className = "calendar-day";
+                                }
+                                currentDay++;
+                            }
+        
+                            newRow.appendChild(newCell);
+                        }
+                        calendarBody.appendChild(newRow);
+                    }
+                }
+        
+                // Generate the initial calendar
+                generateCalendar(currentYear, currentMonth);
+        
+                // Event listener for the previous month button
+                prevMonthBtn.addEventListener("click", function () {
+                    currentMonth--;
+                    if (currentMonth < 1) {
+                        currentMonth = 12;
+                        currentYear--;
+                    }
+                    generateCalendar(currentYear, currentMonth);
+                });
+        
+                // Event listener for the next month button
+                nextMonthBtn.addEventListener("click", function () {
+                    currentMonth++;
+                    if (currentMonth > 12) {
+                        currentMonth = 1;
+                        currentYear++;
+                    }
+                    generateCalendar(currentYear, currentMonth);
+                });
+        
+                const calendarCells = document.querySelectorAll(".calendar-day");
+        
+                // Event listener for calendar cell click
+                calendarCells.forEach(function (cell) {
+                    cell.addEventListener("click", function () {
+                        const eventModal = document.getElementById("event-modal");
+                        eventModal.style.display = "block";
+        
+                        // Get the date from the clicked cell
+                        const selectedDate = cell.textContent;
+        
+                        // Set the selected date as a data attribute on the modal
+                        eventModal.setAttribute("data-selected-date", `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${selectedDate.padStart(2, '0')}`);
+                    });
+                });
+        
+                // Event listener for close button in the modal
+                const closeModalBtn = document.getElementById("close-modal");
+                closeModalBtn.addEventListener("click", function () {
+                    const eventModal = document.getElementById("event-modal");
+                    eventModal.style.display = "none";
+                });
+        
+                // Event listener for form submission
+                const eventForm = document.getElementById("event-form");
+                eventForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const taskName = document.getElementById("task-name").value;
+                    const eventModal = document.getElementById("event-modal");
+                    const taskTime = document.getElementById("task-time").value; 
+        
+                    // Get the selected date from the modal's data attribute
+                    const selectedDate = eventModal.getAttribute("data-selected-date");
+        
+                    // You can now use taskName and selectedDate to create the task
+                    // For example, you can store it in an array or send it to a server
+                    console.log("Task Name: " + taskName);
+                    console.log("Selected Date: " + selectedDate);
+                    console.log("Task Time: " + taskTime);
+        
+                    // Close the modal
+                    eventModal.style.display = "none";
+        
+                    // Optionally, you can clear the input fields here
+                    document.getElementById("task-name").value = "";
+                    document.getElementById("task-time").value = "";
+                });
+            });
+        </script>
+        
+    </div>
+</body>
+</html>

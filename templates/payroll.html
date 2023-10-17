@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for the vertical navbar */
+        .navbar {
+            width: 100px; /* Adjust the width as needed */
+            background-color: #333; /* Navbar background color */
+            height: 100%; /* Make the navbar the full height of the page */
+            position: fixed; /* Fixed position on the left side */
+            left: 0;
+            top: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for the navbar items */
+        .navbar-item {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+
+
+.hover-text {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.navbar-item:hover .hover-text {
+  opacity: 1;
+}
+
+
+        /* Styling for the icons */
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the main content area */
+        .content {
+            margin-left: 100px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling for the contact form */
+        .contact-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        /* Styling for the custom modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+
+        .employee-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .employee-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007BFF;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .clock-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .clock-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .clock-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+</head>
+<body>
+    <!-- Vertical Navbar -->
+    <div class="navbar">
+        <!-- Email Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">🏠</div>
+            <span class="hover-text">Home</span>
+        </a>
+        <a href="/mass_email" class="navbar-item">
+            <div class="icon">✉️</div>
+            <span class="hover-text">Send Mass Emails</span>
+        </a>
+        <!-- SMS Icon -->
+        <a href="/mass_sms" class="navbar-item">
+            <div class="icon">📱</div>
+            <span class="hover-text">Send Mass SMS</span>
+        </a>
+        <!-- Contacts Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">📇</div>
+            <span class="hover-text">Manage Contacts</span>
+        </a>
+        <!-- Random Icons (You can replace these with actual icons) -->
+        <a href="/insights" class="navbar-item">
+            <div class="icon">🔍</div>
+            <span class="hover-text">Insights</span>
+        </a>
+        <a href="/manage_finances" class="navbar-item">
+            <div class="icon">📉</div>
+            <span class="hover-text">Manage Spending</span>
+        </a>
+        <a href="/employees" class="navbar-item">
+            <div class="icon">👨‍💼</div>
+            <span class="hover-text">Manage Employees</span>
+        </a>
+        <a href="/payroll" class="navbar-item">
+            <div class="icon">💰</div>
+            <span class="hover-text">Payroll</span>
+        </a>
+        <a href="/calendar" class="navbar-item">
+            <div class="icon"> 📅</div>
+            <span class="hover-text">Schedule Events</span>
+        </a>
+        <a href="#" class="navbar-item">
+            <div class="icon">⚙️</div>
+            <span class="hover-text">Settings</span>
+        </a>
+    </div>
+
+    <!-- Main content area -->
+    <div class="content">
+        <h1>Employee Payroll</h1>
+        <div class="employee-cards">
+            {% for employee in data %}
+            <div class="employee-card">
+                <h2>{{ employee }}</h2>
+                <div class="clock-buttons">
+                    <button class="clock-button" id="clockInBtn{{ loop.index }}" onclick="clockIn('{{ employee }}', {{ loop.index }})">Clock In</button>
+                    <button class="clock-button" id="clockOutBtn{{ loop.index }}" onclick="clockOut('{{ employee }}', {{ loop.index }})">Clock Out</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <script>
+            // JavaScript logic to handle clocking in and out
+            var clockedInEmployees = {};
+            var clockedOutEmployees = {};
+    
+            function clockIn(employeeName, index) {
+                if (!clockedInEmployees[employeeName]) {
+                    // Perform clock-in logic here
+                    alert(employeeName + ' has clocked in.');
+                    clockedInEmployees[employeeName] = true;
+                    // Disable the Clock In button
+                    document.getElementById('clockInBtn' + index).disabled = true;
+                } else {
+                    alert('You have already clocked in today.');
+                }
+            }
+    
+            function clockOut(employeeName, index) {
+                if (!clockedOutEmployees[employeeName]) {
+                    // Perform clock-out logic here
+                    alert(employeeName + ' has clocked out.');
+                    clockedOutEmployees[employeeName] = true;
+                    // Disable the Clock Out button
+                    document.getElementById('clockOutBtn' + index).disabled = true;
+                } else {
+                    alert('You have already clocked out today.');
+                }
+            }
+        </script>
+    </div>    
+
+</body>
+</html>
+

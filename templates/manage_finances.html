@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for the vertical navbar */
+        .navbar {
+            width: 100px; /* Adjust the width as needed */
+            background-color: #333; /* Navbar background color */
+            height: 100%; /* Make the navbar the full height of the page */
+            position: fixed; /* Fixed position on the left side */
+            left: 0;
+            top: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for the navbar items */
+        .navbar-item {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+
+
+.hover-text {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.navbar-item:hover .hover-text {
+  opacity: 1;
+}
+
+
+        /* Styling for the icons */
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the main content area */
+        .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Hide overflowing content */
+}
+
+        /* Styling for the table */
+/* Styling for the table */
+.table-container {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto; /* Add vertical scrollbar when content exceeds the container */
+}
+
+/* Styling for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling for the form */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        /* Styling for the custom modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+</head>
+<body>
+    <!-- Vertical Navbar -->
+    <div class="navbar">
+        <!-- Email Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">🏠</div>
+            <span class="hover-text">Home</span>
+        </a>
+        <a href="/mass_email" class="navbar-item">
+            <div class="icon">✉️</div>
+            <span class="hover-text">Send Mass Emails</span>
+        </a>
+        <!-- SMS Icon -->
+        <a href="/mass_sms" class="navbar-item">
+            <div class="icon">📱</div>
+            <span class="hover-text">Send Mass SMS</span>
+        </a>
+        <!-- Contacts Icon -->
+        <a href="/" class="navbar-item">
+            <div class="icon">📇</div>
+            <span class="hover-text">Manage Contacts</span>
+        </a>
+        <!-- Random Icons (You can replace these with actual icons) -->
+        <a href="/insights" class="navbar-item">
+            <div class="icon">🔍</div>
+            <span class="hover-text">Insights</span>
+        </a>
+        <a href="/manage_finances" class="navbar-item">
+            <div class="icon">📉</div>
+            <span class="hover-text">Manage Spending</span>
+        </a>
+        <a href="/employees" class="navbar-item">
+            <div class="icon">👨‍💼</div>
+            <span class="hover-text">Manage Employees</span>
+        </a>
+        <a href="/payroll" class="navbar-item">
+            <div class="icon">💰</div>
+            <span class="hover-text">Payroll</span>
+        </a>
+        <a href="/calendar" class="navbar-item">
+            <div class="icon"> 📅</div>
+            <span class="hover-text">Schedule Events</span>
+        </a>
+        <a href="#" class="navbar-item">
+            <div class="icon">⚙️</div>
+            <span class="hover-text">Settings</span>
+        </a>
+    </div>
+    <!-- Main content area -->
+    <div class="content">
+        <h2>Expense Data</h2>
+        <div class="table-container">
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Cost of Goods</th>
+                <th>Rent</th>
+                <th>Utilities</th>
+                <th>Repairs & Maintenance</th>
+                <th>Supplies & Inventory</th>
+                <th>Marketing & Advertising</th>
+                <th>Insurance Premiums</th>
+                <th>Taxes</th>
+                <th>Bank Fees</th>
+                <th>Travel & Entertainment</th>
+                <th>Software Subscriptions</th>
+                <th>Miscellaneous</th>
+                <th>Legal & Professional Fees</th>
+                <th>Employee Benefits</th>
+                <th>Business Meals</th>
+                <th>Office Expenses</th>
+                <!-- Add table headers for other parameters -->
+            </tr>
+            {% for index, row in csv_data.iterrows() %}
+            <tr>
+                <td>{{ row['date'] }}</td>
+                <td>{{ row['cost of goods'] }}</td>
+                <td>{{ row['rent'] }}</td>
+                <td>{{ row['utilities'] }}</td>
+                <td>{{ row['repairs_maintenance'] }}</td>
+                <td>{{ row['supplies_inventory'] }}</td>
+                <td>{{ row['marketing_advertising'] }}</td>
+                <td>{{ row['insurance_premiums'] }}</td>
+                <td>{{ row['taxes'] }}</td>
+                <td>{{ row['bank_fees'] }}</td>
+                <td>{{ row['travel_entertainment'] }}</td>
+                <td>{{ row['software_subscriptions'] }}</td>
+                <td>{{ row['miscellaneous'] }}</td>
+                <td>{{ row['legal_professional_fees'] }}</td>
+                <td>{{ row['employee_benefits'] }}</td>
+                <td>{{ row['business_meals'] }}</td>
+                <td>{{ row['office_expenses'] }}</td>
+                <!-- Add table cells for other parameters -->
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <h1>Expense Input Form</h1>
+        <form method="POST" action="/add_costs">
+
+            <!-- Repeat this block for each parameter -->
+            <label for="cost_of_goods">Cost of Goods:</label>
+            <input type="number" id="cost_of_goods" name="cost_of_goods" step="0.01"><br><br>
+            
+            <label for="rent">Rent:</label>
+            <input type="number" id="rent" name="rent" step="0.01"><br><br>
+            
+            <label for="utilities">Utilities:</label>
+            <input type="number" id="utilities" name="utilities" step="0.01"><br><br>
+            
+            <label for="repairs_maintenance">Repairs & Maintenance:</label>
+            <input type="number" id="repairs_maintenance" name="repairs_maintenance" step="0.01"><br><br>
+            
+            <label for="supplies_inventory">Supplies & Inventory:</label>
+            <input type="number" id="supplies_inventory" name="supplies_inventory" step="0.01"><br><br>
+            
+            <label for="marketing_advertising">Marketing & Advertising:</label>
+            <input type="number" id="marketing_advertising" name="marketing_advertising" step="0.01"><br><br>
+            
+            <label for="insurance_premiums">Insurance Premiums:</label>
+            <input type="number" id="insurance_premiums" name="insurance_premiums" step="0.01"><br><br>
+            
+            <label for="taxes">Taxes:</label>
+            <input type="number" id="taxes" name="taxes" step="0.01"><br><br>
+            
+            <label for="bank_fees">Bank Fees:</label>
+            <input type="number" id="bank_fees" name="bank_fees" step="0.01"><br><br>
+            
+            <label for="travel_entertainment">Travel & Entertainment:</label>
+            <input type="number" id="travel_entertainment" name="travel_entertainment" step="0.01"><br><br>
+            
+            <label for="software_subscriptions">Software Subscriptions:</label>
+            <input type="number" id="software_subscriptions" name="software_subscriptions" step="0.01"><br><br>
+            
+            <label for="miscellaneous">Miscellaneous:</label>
+            <input type="number" id="miscellaneous" name="miscellaneous" step="0.01"><br><br>
+            
+            <label for="legal_professional_fees">Legal & Professional Fees:</label>
+            <input type="number" id="legal_professional_fees" name="legal_professional_fees" step="0.01"><br><br>
+            
+            <label for="employee_benefits">Employee Benefits:</label>
+            <input type="number" id="employee_benefits" name="employee_benefits" step="0.01"><br><br>
+            
+            <label for="business_meals">Business Meals:</label>
+            <input type="number" id="business_meals" name="business_meals" step="0.01"><br><br>
+            
+            <label for="office_expenses">Office Expenses:</label>
+            <input type="number" id="office_expenses" name="office_expenses" step="0.01"><br><br>
+            
+            <!-- Repeat for other parameters -->
+            
+            <input type="submit" value="Submit">
+        </form>
+        
+ 
+    </div>
+
+</body>
+</html>
