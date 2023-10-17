@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building List</title>
-</head>
-<body>
-    <h1>List of Buildings</h1>
-    <ul>
-        <ul>
-            {% for building_data in building_data_list %}
-                <li><a href="/building/{{ loop.index0 }}">{{ building_data.title }}</a></li>
-            {% endfor %}
-        </ul>
-        
-    </ul>
-</body>
-</html>
+{% extends "base_template.html" %}
+
+{% block title %}Building List{% endblock %}
+
+{% block content %}
+  <h1>List of Buildings</h1>
+  <div class="row">
+    {% for building_data in building_data_list %}
+    <div class="col-md-4 mb-4">
+      <div class="card" style="border-color: lightblue;">
+        <div class="card-header bg-light text-dark" style="background-color: lightblue;">
+          <h5><a href="/building/{{ loop.index0 }}" class="custom-card-link">{{ building_data.title }}</a></h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ building_data.description }}</p>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <p>No buildings available.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

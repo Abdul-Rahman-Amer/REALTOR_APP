@@ -8,7 +8,7 @@ from io import BytesIO
 import shutil
 app = Flask(__name__)
 
-executable_name = 'wkhtmltopdf'
+executable_name = 'dummy.exe'
 # Use shutil to find the full path to the executable
 executable_path = shutil.which(executable_name)
 
@@ -104,6 +104,7 @@ def index():
 
 @app.route('/test')
 def test():
+    # TODO the context should be outside of the function I think..... but idk just to keep it clean
     all_prices = {}  # Create an empty dictionary to store prices for all buildings
     for i, building_data in enumerate(building_data_list):
         building_data['index'] = i
