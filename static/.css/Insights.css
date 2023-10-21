@@ -1,0 +1,53 @@
+
+/* Container Styles */
+.chart-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    margin-right: 20px;
+}
+
+/* Hover Effect */
+.chart-container:hover {
+    transform: scale(1.05);
+}
+
+/* Total Earnings Styles */
+.total-earnings {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.insights-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      background-color: #f7f8fc; /* Light Grey Background */
+  }
+  
+  .card {
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 48%; /* Roughly half the container, accounting for gaps */
+  }
+  
+  h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+  }
+  
+  .earnings {
+      margin-top: 1rem;
+      font-weight: bold;
+  }
+  
+  .earnings span {
+      color: #4CAF50; /* Green Color for Positive Earnings */
+  }
+  
