@@ -3,17 +3,200 @@
 {% block title %}Building List{% endblock %}
 
 {% block content %}
-  <h1>List of Buildings</h1>
+<style>
+/* CSS for the "Existing Folders" section */
+.existing-folders {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.existing-folders h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* CSS for the folder list */
+.folder-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style for each folder item */
+.folder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Hover effect for folder items */
+.folder-item:hover {
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+/* Style for the "Remove" button container */
+.remove-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Style for the "Remove" button (circle with X icon) */
+.remove-button {
+    background-color: #ff4444; /* Red color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 50%; /* Make it a circle */
+    width: 50px; /* Adjust the size as needed */
+    height: 50px;
+    font-size: 24px; /* Adjust the icon size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Hover effect for the "Remove" button */
+.remove-button:hover {
+    background-color: #ff0000;
+}
+.remove-button:hover::before {
+    content: "Remove";
+    position: absolute;
+    margin-left: 160px;
+    transform: translateX(-50%);
+    background-color: #ff0000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px; /* Adjust the font size */
+    display: block;
+    
+    transition: opacity 0.5s ease-in-out;
+}
+/* Style for the folder name (span) */
+.folder-name {
+    flex-grow: 1;
+    padding: 5px 10px;
+    color: #333;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/* Style for the "Add" button (circle with + icon) */
+.add-button {
+    background-color: #44ff44; /* Green color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 50%; /* Make it a circle */
+    width: 50px; /* Adjust the size as needed */
+    height: 50px;
+    font-size: 24px; /* Adjust the icon size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Hover effect for the "Add" button */
+.add-button:hover {
+    background-color: #00ff00; /* Lighter green on hover */
+}
+.add-button:hover::before {
+    background-color: #00ff00;
+    content: "Add New Folder";
+    position: absolute;
+    margin-left: 250px;
+    transform: translateX(-50%);
+
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px; /* Adjust the font size */
+    display: block;
+    
+    transition: opacity 0.5s ease-in-out; /* Lighter green on hover */
+}
+/* Style for the "Edit" button (circle with pencil icon) */
+.edit-button {
+    background-color: #428bca; /* Blue color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 50%; /* Make it a circle */
+    width: 50px; /* Adjust the size as needed */
+    height: 50px;
+    font-size: 24px; /* Adjust the icon size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Hover effect for the "Edit" button */
+.edit-button:hover {
+    background-color: #3071a9; /* Darker blue on hover */
+}
+.edit-button:hover::before {
+    background-color: #3071a9;
+    content: "Edit Folder Contents";
+    position: absolute;
+    margin-left: 250px;
+    transform: translateX(-50%);
+
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px; /* Adjust the font size */
+    display: block;
+    
+    transition: opacity 0.5s ease-in-out; /* Darker blue on hover */
+}
+
+
+
+</style>
+  <h1>Manage Buildings</h1>
+  <div class="row">
+    <a href="" class="btn btn-primary" style="margin-left: 17px;">Add Building</a>
+  </div>
+  <br>
   <div class="row">
     {% for building_data in building_data_list %}
     <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100" style="border-color: lightblue;">
         <div class="card-header bg-light text-dark" style="background-color: lightblue;">
-          <h5 class="custom-card-link"><a href="/building/{{ loop.index0 }}">{{ building_data.title }}</a></h5>
+          <h1>{{ building_data.title }}</h1>
+          <button class="btn btn-primary"><a href="/building/{{ loop.index0 }}">Brochure</a><button5>
         </div>
-        <div class="card-body">
-          <p class="card-text">{{ building_data.description }}</p>
-        </div>
+        <div class="existing-folders">
+          <h3>Existing Folders</h3>
+      </div>
+      <div class="card-body">
+          <ul class="folder-list">
+              {% for subfolder in building_data.subfolders %}
+                  <li class="folder-item">
+                      <span class="folder-name">{{ subfolder }}</span>
+                      <button class="edit-button" type="button">&#9998;</button>
+
+                      <button class="remove-button" type="button">&#128465;</button>
+
+                  </li>
+              {% endfor %}
+          </ul>
+          <center>
+          <button class="add-button" type="button">+</button>
+        </center>
+
+      </div>
+      
       </div>
     </div>
     {% else %}

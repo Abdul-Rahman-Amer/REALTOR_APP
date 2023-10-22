@@ -60,13 +60,15 @@ for building_folder in os.listdir(main_folder):
         flex3_folder = os.path.join(building_path, 'flex3')
         if os.path.exists(flex3_folder) and os.path.isdir(flex3_folder):
             # Initialize data for the current building
+            subfolders = [subfolder for subfolder in os.listdir(building_path) if os.path.isdir(os.path.join(building_path, subfolder))]
             building_data = {
                 'title': f'{building_folder.replace("_", " ")} ',
 
                 'studio_price': 'Add studio price here',  # Replace with actual prices
                 'one_bedroom_price': 'Add 1 bedroom price here',
                 'two_bedroom_price': 'Add 2 bedroom price here',
-                'unit_photos': []  # To store relative photo file paths
+                'unit_photos': [],
+                  'subfolders':subfolders # To store relative photo file paths
             }
 
             # Get a list of photo file names in the "flex3" subfolder
@@ -90,8 +92,13 @@ for building_folder in os.listdir(main_folder):
             # Append the data for the current building to the list
             building_data_list.append(building_data)
 
-@app.route('/index')
+
+
+@app.route('/my_buildings')
 def index():
+    folder_path = 'static/fidiBuildings'
+    subfolders = [os.path.abspath(os.path.join(folder_path, f)) for f in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, f))]
+    print(subfolders)
     return render_template('index.html', building_data_list=building_data_list)
 
 @app.route('/test')

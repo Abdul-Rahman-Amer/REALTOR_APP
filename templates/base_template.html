@@ -129,7 +129,7 @@
               margin-bottom: 10px;
             }
 
-            /* Styling for the main content area */
+            Styling for the main content area
             .content {
               margin-left: 100px;
               padding: 20px;
@@ -220,6 +220,7 @@
               border-radius: 10px;
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             }
+            
 
             .close-button {
               color: #aaa;
@@ -243,6 +244,51 @@
               margin-right: 0;
               margin-left: 0;
             }
+
+/* Styling for the employee cards */
+.employee-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.employee-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: calc(33.33% - 20px); /* Adjust card width as needed */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Styling for employee details */
+.employee-details {
+    font-weight: bold;
+}
+
+.employee-details h3 {
+    margin: 0;
+}
+
+/* Styling for employee actions */
+.employee-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.employee-actions .icon {
+    font-size: 20px;
+}
+
+/* Styling for the remove button */
+.remove-button .icon {
+    color: #ff0000; /* Red color for remove button */
+    cursor: pointer;
+}
+
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -255,6 +301,15 @@
         <a href="/" class="navbar-item">
           <div class="icon">🏠</div>
           <span class="hover-text">Home</span>
+        </a>
+        <a href="/my_buildings" class="navbar-item">
+          <div class="icon">🏢
+          </div>
+          <span class="hover-text">My Buildings</span>
+        </a>
+        <a href="/index" class="navbar-item">
+          <div class="icon">🤖</div>
+          <span class="hover-text">Ads Generator</span>
         </a>
         <a href="/mass_email" class="navbar-item">
           <div class="icon">✉️</div>
@@ -295,22 +350,8 @@
           <div class="icon">⚙️</div>
           <span class="hover-text">Settings</span>
         </a>
-        <a href="/index" class="navbar-item">
-          <div class="icon"><i class="fas fa-building"></i></div>
-          <span class="hover-text">Ads Generator</span>
-        </a>
-        <a href="/index" class="navbar-item">
-          <div class="icon"><i class="fas fa-building"></i></div>
-          <span class="hover-text">Ads Generator</span>
-        </a>
-        <a href="/index" class="navbar-item">
-          <div class="icon"><i class="fas fa-building"></i></div>
-          <span class="hover-text">Ads Generator</span>
-        </a>
-        <a href="/index" class="navbar-item">
-          <div class="icon"><i class="fas fa-building"></i></div>
-          <span class="hover-text">Ads Generator</span>
-        </a>
+ 
+
       </div>
     </div>
 
