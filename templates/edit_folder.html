@@ -162,7 +162,7 @@
             border-radius: 10px
         }
 .container{
-    padding: 20px;
+    padding: 80px;
 }
 #description-form h2 {
     color: #007bff;
@@ -197,28 +197,77 @@
 #description-form button:hover {
     background-color: #0056b3;
 }
+#listingDetailsContainer {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
 
+        #listingDetailsContainer h2 {
+            margin-top: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .description-and-checkboxes {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .checkbox-group {
+        width: 85%;
+    }
 </style>
 </head>
 <body>
     <div class="container">
-    <center>
-<h1>Editing Contents</h1>
-</center>
-<div id="description-form">
-<h2>Description</h2>
-<form>
-    <label for="description">Enter your description:</label>
-    <textarea id="description" name="description" rows="4" cols="50"></textarea>
-    <br>
-    <button type="submit">Submit Description</button>
-</form>
-</div>
-<div class="upload-container" id="drop-area">
-<p>Drag & Drop photos here or click to select files</p>
-<label for="fileInput" class="custom-file-upload">Choose File</label>
-<input type="file" id="fileInput" multiple>
-</div>
+        <center>
+            <h1>Editing Contents</h1>
+        </center>
+        <div class="description-and-checkboxes">
+            <div id="description-form">
+                <h2>Description</h2>
+                <form>
+                    <label for="description">Enter your description:</label>
+                    <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                    <br>
+                    <button type="submit">Submit Description</button>
+                </form>
+            </div>
+            <div id="listingDetailsContainer">
+                <div class="checkbox-group">
+                    <h2>Building Features</h2>
+                    <input type="checkbox" id="doorman" name="buildingFeatures" value="Doorman">
+                    <label for="doorman">Doorman</label><br>
+                    <input type="checkbox" id="elevator" name="buildingFeatures" value="Elevator">
+                    <label for="elevator">Elevator</label><br>
+                    <input type="checkbox" id="fitnessCenter" name="buildingFeatures" value="Fitness Center">
+                    <label for="fitnessCenter">Fitness Center</label><br>
+                    <input type="checkbox" id="laundryInBuilding" name="buildingFeatures" value="Laundry In Building">
+                    <label for="laundryInBuilding">Laundry In Building</label><br>
+                    <input type="checkbox" id="commonOutdoorSpace" name="buildingFeatures" value="Common Outdoor Space">
+                    <label for="commonOutdoorSpace">Common Outdoor Space</label><br>
+                    <input type="checkbox" id="storageFacility" name="buildingFeatures" value="Storage Facility">
+                    <label for="storageFacility">Storage Facility</label><br>
+                </div>
+                <div class="checkbox-group">
+                    <h2>Pet Policy</h2>
+                    <input type="checkbox" id="catsAllowed" name="petPolicy" value="Cats Allowed">
+                    <label for="catsAllowed">Cats Allowed</label><br>
+                    <input type="checkbox" id="dogsAllowed" name="petPolicy" value="Dogs Allowed">
+                    <label for="dogsAllowed">Dogs Allowed</label><br>
+                </div>
+            </div>
+        </div>
+        <div class="upload-container" id="drop-area">
+            <p>Drag & Drop photos here or click to select files</p>
+            <label for="fileInput" class="custom-file-upload">Choose File</label>
+            <input type="file" id="fileInput" multiple>
+        </div>
+    </div>  
 
 <div class="big-box">
 <div class="image-list">
@@ -256,6 +305,8 @@
     </div>
 </div>
 </div>
+</div>
+</body>
 <script>
 const dropArea = document.getElementById("drop-area");
 
