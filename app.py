@@ -61,6 +61,7 @@ for building_folder in os.listdir(main_folder):
         if os.path.exists(flex3_folder) and os.path.isdir(flex3_folder):
             # Initialize data for the current building
             subfolders = [subfolder for subfolder in os.listdir(building_path) if os.path.isdir(os.path.join(building_path, subfolder))]
+            subfolder_paths = [os.path.join(building_path, subfolder) for subfolder in subfolders]
             building_data = {
                 'title': f'{building_folder.replace("_", " ")} ',
 
@@ -68,7 +69,8 @@ for building_folder in os.listdir(main_folder):
                 'one_bedroom_price': 'Add 1 bedroom price here',
                 'two_bedroom_price': 'Add 2 bedroom price here',
                 'unit_photos': [],
-                  'subfolders':subfolders # To store relative photo file paths
+                  'subfolders':subfolders,
+                   'subfolder_paths':subfolder_paths # To store relative photo file paths
             }
 
             # Get a list of photo file names in the "flex3" subfolder

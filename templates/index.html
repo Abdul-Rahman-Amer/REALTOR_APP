@@ -183,10 +183,10 @@
           <ul class="folder-list">
               {% for subfolder in building_data.subfolders %}
                   <li class="folder-item">
-                      <span class="folder-name">{{ subfolder }}</span>
-                      <button class="edit-button" type="button">&#9998;</button>
+                    <a href="{{ building_data.subfolder_paths[loop.index0] }}" class="folder-name">{{ subfolder }}</a>
+                    <a href="{{ building_data.subfolder_paths[loop.index0] }}" class="edit-button">&#9998;</a>
+                    <a href="{{ building_data.subfolder_paths[loop.index0] }}" class="remove-button">&#10006;</a>
 
-                      <button class="remove-button" type="button">&#128465;</button>
 
                   </li>
               {% endfor %}
