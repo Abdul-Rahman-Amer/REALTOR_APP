@@ -12,7 +12,12 @@ from email.mime.text import MIMEText
 from datetime import datetime
 app = Flask(__name__)
 
+def is_image(filename):
+    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.tiff'}
+    ext = os.path.splitext(filename)[-1].lower()
+    return ext in image_extensions
 
+app.jinja_env.globals.update(is_image=is_image)
 
 def rename_files_in_flex3(main_folder):
     # Loop through the building folders in the main directory
@@ -676,7 +681,21 @@ def add_task():
         'date': task_date,
         'time': task_time
     }
-    
+@app.route('/edit_folder/<path:folder_path>')
+def edit_folder(folder_path):
+    # Combine the provided folder path with the main folder path
+    full_folder_path = folder_path
+
+    # Check if the folder exists
+    if os.path.exists(full_folder_path) and os.path.isdir(full_folder_path):
+        # List all the files and directories in the specified folder
+        contents = os.listdir(full_folder_path)
+        
+        # Render a template that shows the contents of the folder
+        return render_template('edit_folder.html', folder_name=folder_path, contents=contents)
+    else:
+        # Handle the case where the folder doesn't exist
+        return "Folder not found", 404 
     
 if __name__ == '__main__':
     app.run(debug=True)

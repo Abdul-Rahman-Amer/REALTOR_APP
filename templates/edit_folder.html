@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Folder: {{ folder_name }}</title>
+</head>
+<body>
+    <h1>Edit Folder: {{ folder_name }}</h1>
+    <ul>
+        {% for item in contents %}
+            <li>
+               
+                {% if is_image(item) %}
+                <img src="{{ url_for('static', filename=folder_name.lstrip('static/') + '/' + item) }}" alt="Image">
+
+
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
