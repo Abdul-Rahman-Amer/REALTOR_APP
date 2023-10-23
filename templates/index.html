@@ -3,6 +3,10 @@
 {% block title %}Building List{% endblock %}
 
 {% block content %}
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
 <style>
 /* CSS for the "Existing Folders" section */
 .existing-folders {
@@ -174,33 +178,93 @@
       <div class="card h-100" style="border-color: lightblue;">
         <div class="card-header bg-light text-dark" style="background-color: lightblue;">
           <h1>{{ building_data.title }}</h1>
-          <button class="btn btn-primary"><a href="/building/{{ loop.index0 }}">Brochure</a><button5>
+          <button class="btn btn-primary"><a href="/building/{{ loop.index0 }}">Brochure</a></button>
         </div>
         <div class="existing-folders">
           <h3>Existing Folders</h3>
-      </div>
-      <div class="card-body">
+        </div>
+        <div class="card-body">
           <ul class="folder-list">
-              {% for subfolder in building_data.subfolders %}
-                  <li class="folder-item">
-                    <ul class="folder-name">{{ subfolder }}</ul>
-                    <a href="/edit_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="edit-button">&#9998;</a>
-                    <a href="{{ building_data.subfolder_paths[loop.index0] }}" class="remove-button">&#10006;</a>
+            {% for subfolder in building_data.subfolders %}
+              <li class="folder-item">
+                <ul class="folder-name">{{ subfolder }}</ul>
+                <a href="/edit_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="edit-button">&#9998;</a>
+                <a href="/remove_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="remove-button">&#10006;</a>
+              </li>
+            {% endfor %}
+            <center>
+                <a href="#" class="addFolderButton" data-building-title="{{ building_data.title }}"><button class="add-button" type="button">+</button></a>
 
-
-                  </li>
-              {% endfor %}
+            </center>
           </ul>
-          <center>
-          <button class="add-button" type="button">+</button>
-        </center>
-
+  
+          <div class="modal" id="folderNameModal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Enter Folder Name</h2>
+                <form id="folderNameForm">
+                    <input type="text" id="folderNameInput" placeholder="Folder Name" required>
+                    <button type="submit" id="createFolderButton">Create Folder</button>
+                </form>
+            </div>
+        </div>
+        
+          </div>
+        </div>
       </div>
+    
+    
+  
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        // Open the modal when the button is clicked
+        $(".addFolderButton").click(function() {
+    const buildingTitle = $(this).data("building-title");
+          const modal = $("#folderNameModal");
+          modal.css("display", "block");
       
-      </div>
+          // Set the building data for the modal's context
+          modal.data("building-data", buildingData);
+        });
+      
+        // Close the modal when the "X" button is clicked
+        $(".close").click(function() {
+          $("#folderNameModal").css("display", "none");
+        });
+      
+        $("#createFolderButton").click(function() {
+          // Get the building data associated with the modal
+          const buildingData = $("#folderNameModal").data("building-data");
+          const folderName = $("#folderNameInput").val();
+      
+          // Send folderName and buildingData to the Flask route
+          $.ajax({
+            type: "POST",
+            url: `/add_folder/${buildingData.title}`,
+            data: { folder_name: folderName },
+            success: function(response) {
+              // Handle the response, e.g., show a success message
+              console.log(response);
+      
+              // Close the modal
+              $("#folderNameModal").css("display", "none");
+            },
+            error: function(error) {
+              // Handle errors, e.g., show an error message
+              console.error(error);
+            }
+          });
+        });
+      });
+      </script>
+      
+  {% endfor %}
+  
     </div>
-    {% else %}
-    <p>No buildings available.</p>
-    {% endfor %}
+
+ 
   </div>
+
+
 {% endblock %}

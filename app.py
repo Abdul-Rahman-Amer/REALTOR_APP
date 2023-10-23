@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, request, send_file, make_response
+from flask import Flask, render_template, send_from_directory, request, send_file, make_response, redirect
 from urllib.parse import quote,urljoin
 import urllib
 import pandas as pd
@@ -10,6 +10,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
+import shutil
+
 app = Flask(__name__)
 
 def is_image(filename):
@@ -105,7 +107,52 @@ for building_folder in os.listdir(main_folder):
 def index():
     folder_path = 'static/fidiBuildings'
     subfolders = [os.path.abspath(os.path.join(folder_path, f)) for f in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, f))]
-    print(subfolders)
+    
+    # Create a list to store data for each building
+    building_data_list = []
+
+    # Loop through the building folders in the main directory
+    for building_folder in os.listdir(main_folder):
+        building_path = os.path.join(main_folder, building_folder)
+        if os.path.isdir(building_path):
+            # Check if the "flex3" subfolder exists within the building folder
+            flex3_folder = os.path.join(building_path, 'flex3')
+            if os.path.exists(flex3_folder) and os.path.isdir(flex3_folder):
+                # Initialize data for the current building
+                subfolders = [subfolder for subfolder in os.listdir(building_path) if os.path.isdir(os.path.join(building_path, subfolder))]
+                subfolder_paths = [os.path.join(building_path, subfolder) for subfolder in subfolders]
+                building_data = {
+                    'title': f'{building_folder.replace("_", " ")} ',
+
+                    'studio_price': 'Add studio price here',  # Replace with actual prices
+                    'one_bedroom_price': 'Add 1 bedroom price here',
+                    'two_bedroom_price': 'Add 2 bedroom price here',
+                    'unit_photos': [],
+                    'subfolders':subfolders,
+                    'subfolder_paths':subfolder_paths 
+                }
+
+                # Get a list of photo file names in the "flex3" subfolder
+                photos = []
+                for photo in os.listdir(flex3_folder):
+                    if photo.lower().endswith(('.jpeg', '.png')):
+                        # Replace spaces with underscores in file names
+                        sanitized_photo = photo.replace(" ", "_")
+                        photos.append(sanitized_photo)
+
+                # Construct the relative photo file paths with URL encoding
+                photo_urls = []
+                for photo in photos:
+                    # Use urllib.parse to handle URL encoding
+                    encoded_photo = urllib.parse.quote(photo, safe='')
+                    photo_path = os.path.join('fidiBuildings', urllib.parse.quote(building_folder), 'flex3', encoded_photo)
+                    photo_urls.append(photo_path)
+
+                building_data['unit_photos'].extend(photo_urls)
+
+                # Append the data for the current building to the list
+                building_data_list.append(building_data)
+
     return render_template('index.html', building_data_list=building_data_list)
 
 @app.route('/test')
@@ -696,6 +743,40 @@ def edit_folder(folder_path):
     else:
         # Handle the case where the folder doesn't exist
         return "Folder not found", 404 
+
+@app.route('/remove_folder/<path:folder_path>')
+def remove_folder(folder_path):
+    # Get the absolute path to the folder
+    absolute_path = folder_path
+    print(absolute_path)
+
+    try:
+        if os.path.exists(absolute_path):
+            # Remove the folder
+            shutil.rmtree(absolute_path)
+
+            return redirect('/my_buildings')
+        else:
+            return 'Folder does not exist'
+        
+    except Exception as e:
+        return str(e)
+    
+@app.route('/add_folder/<building_title>', methods=['POST', 'GET'])
+def add_folder(building_title):
+    folder_name = request.form.get('folder_name')
+    
+    # Create the folder in the specified path
+    folder_path = f'static/fidiBuildings/{building_title}/{folder_name}'
+    
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        redirect('/my_buildings')
+    else:
+        return 'Folder already exists'
+
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)
