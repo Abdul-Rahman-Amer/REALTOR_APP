@@ -115,43 +115,48 @@ def index():
     for building_folder in os.listdir(main_folder):
         building_path = os.path.join(main_folder, building_folder)
         if os.path.isdir(building_path):
-            # Check if the "flex3" subfolder exists within the building folder
-            flex3_folder = os.path.join(building_path, 'flex3')
-            if os.path.exists(flex3_folder) and os.path.isdir(flex3_folder):
-                # Initialize data for the current building
-                subfolders = [subfolder for subfolder in os.listdir(building_path) if os.path.isdir(os.path.join(building_path, subfolder))]
-                subfolder_paths = [os.path.join(building_path, subfolder) for subfolder in subfolders]
-                building_data = {
-                    'title': f'{building_folder.replace("_", " ")} ',
+            # Initialize data for the current building
+            subfolders = [subfolder for subfolder in os.listdir(building_path) if os.path.isdir(os.path.join(building_path, subfolder))]
+            subfolder_paths = [os.path.join(building_path, subfolder) for subfolder in subfolders]
+            building_data = {
+                'title': f'{building_folder.replace("_", " ")} ',
+                'studio_price': 'Add studio price here',  # Replace with actual prices
+                'one_bedroom_price': 'Add 1 bedroom price here',
+                'two_bedroom_price': 'Add 2 bedroom price here',
+                'unit_photos': [],
+                'subfolders': subfolders,
+                'subfolder_paths': subfolder_paths  # To store relative photo file paths
+            }
 
-                    'studio_price': 'Add studio price here',  # Replace with actual prices
-                    'one_bedroom_price': 'Add 1 bedroom price here',
-                    'two_bedroom_price': 'Add 2 bedroom price here',
-                    'unit_photos': [],
-                    'subfolders':subfolders,
-                    'subfolder_paths':subfolder_paths 
-                }
+            try:
+                # Check if the "flex3" subfolder exists within the building folder
+                flex3_folder = os.path.join(building_path, 'flex3')
+                if os.path.exists(flex3_folder) and os.path.isdir(flex3_folder):
+                    # Get a list of photo file names in the "flex3" subfolder
+                    photos = []
+                    for photo in os.listdir(flex3_folder):
+                        if photo.lower().endswith(('.jpeg', '.png')):
+                            # Replace spaces with underscores in file names
+                            sanitized_photo = photo.replace(" ", "_")
+                            photos.append(sanitized_photo)
 
-                # Get a list of photo file names in the "flex3" subfolder
-                photos = []
-                for photo in os.listdir(flex3_folder):
-                    if photo.lower().endswith(('.jpeg', '.png')):
-                        # Replace spaces with underscores in file names
-                        sanitized_photo = photo.replace(" ", "_")
-                        photos.append(sanitized_photo)
+                    # Construct the relative photo file paths with URL encoding
+                    photo_urls = []
+                    for photo in photos:
+                        # Use urllib.parse to handle URL encoding
+                        encoded_photo = urllib.parse.quote(photo, safe='')
+                        photo_path = os.path.join('fidiBuildings', urllib.parse.quote(building_folder), 'flex3', encoded_photo)
+                        photo_urls.append(photo_path)
 
-                # Construct the relative photo file paths with URL encoding
-                photo_urls = []
-                for photo in photos:
-                    # Use urllib.parse to handle URL encoding
-                    encoded_photo = urllib.parse.quote(photo, safe='')
-                    photo_path = os.path.join('fidiBuildings', urllib.parse.quote(building_folder), 'flex3', encoded_photo)
-                    photo_urls.append(photo_path)
+                    building_data['unit_photos'].extend(photo_urls)
+            except Exception as e:
+                print(f"Error processing 'flex3' folder for building {building_folder}: {str(e)}")
 
-                building_data['unit_photos'].extend(photo_urls)
+            # Append the data for the current building to the list
+            building_data_list.append(building_data)
 
-                # Append the data for the current building to the list
-                building_data_list.append(building_data)
+
+   
 
     return render_template('index.html', building_data_list=building_data_list)
 
@@ -762,21 +767,44 @@ def remove_folder(folder_path):
     except Exception as e:
         return str(e)
     
-@app.route('/add_folder/<building_title>', methods=['POST', 'GET'])
+
+
+@app.route('/add_folder/<path:building_title>', methods=['POST', 'GET'])
 def add_folder(building_title):
-    folder_name = request.form.get('folder_name')
+    if request.method == 'POST':
+        folder_name = request.form.get('folder_name')  # Use request.form for POST data
+        building_title = building_title.replace(' ', '_')
     
-    # Create the folder in the specified path
-    folder_path = f'static/fidiBuildings/{building_title}/{folder_name}'
+        # Create the folder in the specified path
+        folder_path = f'static/fidiBuildings/{building_title}/{folder_name}'
+
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            return redirect('/my_buildings')
+        else:
+            return 'Folder already exists'
+
+    # Handle the GET request (form rendering)
+    return render_template('index.html', building_data_list=building_data_list)
+
+@app.route('/add_building', methods=['POST', 'GET'])
+def add_building():
+    if request.method == 'POST':
+        building_name = request.form.get('building_name')  # Use request.form for POST data
+        building_title = building_name.replace(' ', '_')
     
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-        redirect('/my_buildings')
-    else:
-        return 'Folder already exists'
+        # Create the folder in the specified path
+        folder_path = f'static/fidiBuildings/{building_title}'
 
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            return redirect('/my_buildings')
+        else:
+            return 'Folder already exists'
 
-
+    # Handle the GET request (form rendering)
+    return redirect('/my_buildings')
+    
     
 if __name__ == '__main__':
     app.run(debug=True)

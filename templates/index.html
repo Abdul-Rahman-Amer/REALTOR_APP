@@ -164,12 +164,43 @@
     transition: opacity 0.5s ease-in-out; /* Darker blue on hover */
 }
 
+/* Style for the "Remove Building" button */
+/* Style for the "Remove Building" button */
+.remove-building-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 50px; /* Adjust the size as needed */
+  height: 50px;
+  background-color: #ff4444; /* Red color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  font-size: 24px; /* Adjust the icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add a smooth hover effect */
+
+  /* Optional: Add box shadow for depth */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a hover effect for the button */
+.remove-building-button:hover {
+  background-color: #ff3333; /* Darker red on hover */
+}
 
 
 </style>
   <h1>Manage Buildings</h1>
   <div class="row">
-    <a href="" class="btn btn-primary" style="margin-left: 17px;">Add Building</a>
+    <form action="/add_building" method="POST">
+      <input type="text" name="building_name" placeholder="Building Name">
+      <button class="btn btn-primary" type="submit">Add Building</button>
+    </form>
+
   </div>
   <br>
   <div class="row">
@@ -179,91 +210,52 @@
         <div class="card-header bg-light text-dark" style="background-color: lightblue;">
           <h1>{{ building_data.title }}</h1>
           <button class="btn btn-primary"><a href="/building/{{ loop.index0 }}">Brochure</a></button>
-        </div>
+        </div> <button class="remove-building-button" data-building="{{ building_data.title }}">&times;</button>
         <div class="existing-folders">
           <h3>Existing Folders</h3>
         </div>
-        <div class="card-body">
-          <ul class="folder-list">
-            {% for subfolder in building_data.subfolders %}
-              <li class="folder-item">
-                <ul class="folder-name">{{ subfolder }}</ul>
-                <a href="/edit_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="edit-button">&#9998;</a>
-                <a href="/remove_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="remove-button">&#10006;</a>
-              </li>
-            {% endfor %}
-            <center>
-                <a href="#" class="addFolderButton" data-building-title="{{ building_data.title }}"><button class="add-button" type="button">+</button></a>
-
-            </center>
-          </ul>
-  
-          <div class="modal" id="folderNameModal">
-            <div class="modal-content">
-                <span class="close">×</span>
-                <h2>Enter Folder Name</h2>
-                <form id="folderNameForm">
-                    <input type="text" id="folderNameInput" placeholder="Folder Name" required>
-                    <button type="submit" id="createFolderButton">Create Folder</button>
+        <div class="card">
+          <div class="card-header">
+           
+          </div>
+          <div class="card-body">
+            <ul class="folder-list">
+              {% for subfolder in building_data.subfolders %}
+                <li class="folder-item">
+                  <ul class="folder-name">{{ subfolder }}</ul>
+                  <a href="/edit_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="edit-button">&#9998;</a>
+                  <a href="/remove_folder/{{ building_data.subfolder_paths[loop.index0] }}" class="remove-button">&#10006;</a>
+                </li>
+              {% endfor %}
+              <center>
+                <form action="/add_folder/{{ building_data.title }}" method="POST">
+                  <input type="text" name="folder_name" placeholder="Enter Folder Name">
+                  <button class="add-button" type="submit">+</button>
                 </form>
-            </div>
-        </div>
-        
+              </center>
+            </ul>
           </div>
         </div>
       </div>
-    
-    
-  
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-      $(document).ready(function() {
-        // Open the modal when the button is clicked
-        $(".addFolderButton").click(function() {
-    const buildingTitle = $(this).data("building-title");
-          const modal = $("#folderNameModal");
-          modal.css("display", "block");
-      
-          // Set the building data for the modal's context
-          modal.data("building-data", buildingData);
-        });
-      
-        // Close the modal when the "X" button is clicked
-        $(".close").click(function() {
-          $("#folderNameModal").css("display", "none");
-        });
-      
-        $("#createFolderButton").click(function() {
-          // Get the building data associated with the modal
-          const buildingData = $("#folderNameModal").data("building-data");
-          const folderName = $("#folderNameInput").val();
-      
-          // Send folderName and buildingData to the Flask route
-          $.ajax({
-            type: "POST",
-            url: `/add_folder/${buildingData.title}`,
-            data: { folder_name: folderName },
-            success: function(response) {
-              // Handle the response, e.g., show a success message
-              console.log(response);
-      
-              // Close the modal
-              $("#folderNameModal").css("display", "none");
-            },
-            error: function(error) {
-              // Handle errors, e.g., show an error message
-              console.error(error);
-            }
-          });
-        });
-      });
-      </script>
-      
+      </div>
+
   {% endfor %}
   
     </div>
 
- 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".remove-building-button").click(function() {
+          const buildingTitle = $(this).data("building");
+          // Here, you can use an AJAX request to remove the building based on the buildingTitle
+          // Add your removal logic here
+    
+          // Optionally, you can remove the card from the DOM to reflect the removal visually
+          $(this).closest(".card").remove();
+        });
+      });
+    </script>
   </div>
 
 
